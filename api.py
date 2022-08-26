@@ -24,4 +24,4 @@ def in_mp3(video_id):
 
 
 if __name__ == "__main__":
-    api.run()
+    api.run(debug=True)
