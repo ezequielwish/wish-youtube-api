@@ -1,6 +1,5 @@
 import moviepy.editor as mp
 from pytube import YouTube
-import os
 
 
 class Video:
@@ -32,7 +31,6 @@ class Video:
     def convert_mp4_to_mp3(path, filename):
         with mp.AudioFileClip(f'{path}\{filename}.mp4') as audioclip:
             audioclip.write_audiofile(f'{path}\{filename}.mp3')
-        os.remove(f'{path}/{filename}.mp4') # Delete the .mp4
 
     def download(self, quality):
         '''Download the video in High Quality, Low Quality or MP3'''
@@ -55,4 +53,3 @@ class Video:
             video = self.yt.streams.get_lowest_resolution()
             video.download(path, filename=f'{filename}')
         return filename
-
