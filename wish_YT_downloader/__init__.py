@@ -1,5 +1,6 @@
 import moviepy.editor as mp
 from pytube import YouTube
+import os
 
 
 class Video:
@@ -19,7 +20,7 @@ class Video:
                     new.append(char)
             elif char == '|':
                 new.append('-')
-            elif char.lower() in (r'aáàãâbcdeéèêfghiíìjklmnopqrstuvwxyz0987654321([{}])/$&~#@!-".,?'):
+            elif char.lower() in (r'aáàãâbcdeéèêfghiíìjklmnopqrstuvwxyz0987654321([{}])$&~#@!-".,?'):
                 new.append(char)
         new = ''.join(new).strip() # Convert list into a string
         if len(new) <= 50: # 50 charactere is a good lenght to filenames
@@ -31,6 +32,7 @@ class Video:
     def convert_mp4_to_mp3(path, filename):
         with mp.AudioFileClip(f'{path}\{filename}.mp4') as audioclip:
             audioclip.write_audiofile(f'{path}\{filename}.mp3')
+        os.remove(f'{path}/{filename}.mp4') # Delete the .mp4
 
     def download(self, quality):
         '''Download the video in High Quality, Low Quality or MP3'''
